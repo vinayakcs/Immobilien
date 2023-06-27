@@ -1,0 +1,74 @@
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<% if isHome ==true && page.nil?  %>
+<% content_for :head do %>
+         <meta name="description" content="Login to Immobilien and access Germany's best property managers" />
+         <meta name="keywords" content="property managers" />
+	 <meta property="og:title" content="Immobilien"/>	
+	 <meta property="og:url" content="https://www.immobilien.com"/>	
+	 <meta property="og:image" content="http://www.immobilien.com/images/immobilien_meta_image.jpg"/>
+	 <meta property="og:description" content="Login to Immobilien and access Germany's best property managers" />
+
+	<meta name="author" content="" />
+	<meta name="copyright" content="" />
+	<meta name="application-name" content="Immobilien" />
+	<meta name="description" content="Login to Immobilien and access Germany's best property managers" />
+	<meta name="keywords" content="property managers" />
+
+
+         <meta name="twitter:card" content="summary" />
+         <meta name="twitter:site" content="@Immobilien" />
+         <meta name="twitter:title" content="Immobilien" />
+         <meta name="twitter:description" content="Login to Immobilien and access Germany's best property managers" />
+         <meta name="twitter:image" content="http://www.immobilien.com/images/immobilien_meta_image.jpg" />
+         <meta name="twitter:url" content="https://www.immobilien.com" />
+
+
+<% end %> 
+<% elsif isHome ==false && !page.nil? && page.instance_of?(Agent)%>
+
+<% content_for :head do %>
+	 <meta property="og:title" content="<%=page.title%>"/>	
+	 <meta property="og:url" content="<%='#TODO'%>"/>	
+	 <meta property="og:image" content="<%=page.profile_image.url%>"/>
+	 <meta property="og:description" content="<%=page.description%>" />
+
+	<meta name="author" content="<%=page.title%>" />
+	<meta name="copyright" content="" />
+	<meta name="application-name" content="Immobilien" />
+	<meta name="description" content="<%=page.description%>" />
+	<meta name="keywords" content="<%=page.title%>" />
+
+         <meta name="twitter:card" content="summary" />
+         <meta name="twitter:site" content="@Immobilien" />
+         <meta name="twitter:title" content="<%=page.title%>" />
+         <meta name="twitter:description" content="<%=page.description%>" />
+         <meta name="twitter:image" content="<%=page.profile_image.url%>" />
+         <meta name="twitter:url" content="<%='#TODO'%>" />
+
+<% end %> 
+<%elsif isHome ==false && !page.nil? && page.instance_of?(Client)%>
+<% content_for :head do %>
+	 <meta property="og:title" content="<%=page.first_name+" "+page.last_name%>"/>	
+	 <meta property="og:url" content="<%='#TODO'%>"/>	
+	 <meta property="og:image" content="<%=page.profile_image.url%>"/>
+	 <meta property="og:description" content="<%=page.first_name+" "+page.last_name%>" />
+
+	<meta name="author" content="<%=page.first_name+" "+page.last_name%>" />
+	<meta name="copyright" content="" />
+	<meta name="application-name" content="Immobilien" />
+	<meta name="description" content="<%=page.first_name+" "+page.last_name%>" />
+	<meta name="keywords" content="<%=page.first_name+" "+page.last_name%>" />
+
+         <meta name="twitter:card" content="summary" />
+         <meta name="twitter:site" content="@Immobilien" />
+         <meta name="twitter:title" content="<%=page.first_name+" "+page.last_name%>" />
+         <meta name="twitter:description" content="<%=page.first_name+" "+page.last_name%>" />
+         <meta name="twitter:image" content="<%=page.profile_image.url%>" />
+         <meta name="twitter:url" content="<%='#TODO'%>" />
+
+<% end %> 
+
+<%end%>

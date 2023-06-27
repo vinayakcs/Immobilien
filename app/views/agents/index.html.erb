@@ -1,0 +1,15 @@
+
+<div id="agent_preview_container" class="container">
+	<%if @agents.nil? || @agents.empty? %>
+		<%= render :partial => 'shared/noresult' %>
+	<%else%>
+		<%for agent in @agents %>
+			<%= render :partial => 'agents/previewagent', :locals => {:agent => agent} %>
+		<%end%>
+	<%end%>
+
+</div>
+
+<%if !@agents.nil? and !@agents.empty? and @agents.length>=GlobalConstants::AGENT_PER_PAGE%>
+<%= render :partial => 'shared/loadmore',:locals => {:urlpath => agents_path(:page=>1) } %>
+<%end%>

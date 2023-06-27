@@ -1,0 +1,52 @@
+$(function() {
+	var utils=immobilien_utils();
+	<% if @messagetype==GlobalConstants::MESSAGE_CONVERSATION%>
+
+		<% if !@loadmore %>
+			$('#conversationList').empty();
+		<% end %>
+
+		<% @conversations.each do |c| %>
+			$('#conversationList').append("<%=  escape_javascript render :partial => 'messages/conversation', :locals => {:conversation => c} %>");
+		<% end %>
+
+		<% if @isLastResults %>
+			$('#conversationList').append("<%= escape_javascript render :partial => 'shared/noresult' %>");
+			$('.conversationpanel').find('.load_more_btn').hide();
+		<% else %>
+		$('.conversationpanel').find('.load_more_btn').show();
+		var oldUrl=$('.conversationpanel').find('.load_more_btn').attr('href');
+		$('.conversationpanel').find('.load_more_btn').attr('href',utils.loadPageVal(oldUrl,@pageval+1));
+		<% end %>
+	<% elsif @messagetype==GlobalConstants::MESSAGE_MESSAGE%>
+		
+		<% if !@loadmore %>
+			$('.chat').empty();
+			$('.messagespanel').find('#loadmorebtn').remove();
+			$('.messagespanel').find('.panel-body').append("<%=  escape_javascript render :partial => 'shared/loadmore',:locals => {:urlpath => message_path(:page=>(@pageval+1),:loadmore=>true,:type=>'message',:counterpartid=>@counterpartid,:counterparttype=>@counterparttype) } %>");
+		<% end %>
+
+			
+			
+
+		<% @messages.each do |m| %>
+			$('.chat').append("<%=  escape_javascript render :partial => 'messages/message', :locals => {:message => m} %>");
+		<% end %>	
+
+		<% if @isLastResults %>
+			$('.chat').append("<%= escape_javascript render :partial => 'shared/noresult' %>");
+			$('.messagespanel').find('.load_more_btn').hide();
+		<% else %>
+		$('.messagespanel').find('.load_more_btn').show();
+		var oldUrl=$('.messagespanel').find('.load_more_btn').attr('href');
+		$('.messagespanel').find('.load_more_btn').attr('href',utils.loadPageVal(oldUrl,<%=@pageval+1%>));			
+		<% end %>
+
+
+
+
+	<% else %>	
+		//TODO
+	<% end %>
+
+});

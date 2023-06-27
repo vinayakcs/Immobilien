@@ -1,0 +1,14 @@
+$(function() {
+
+<% if @status and !@msginstance.nil? %>
+	<% if @source =='profile' %>
+		$('.chat').prepend("<%=  escape_javascript render :partial => 'messages/message', :locals => {:message => @msginstance} %>");
+	<% elsif @source=='modal' %>
+		$('#messageconfirmation').empty();
+		$('#messageconfirmation').show();
+		$('#messageconfirmation').text("<%=t('common.message.modalsuccess')%>");
+	<% end %>
+<% else %>
+	//TODO display error message
+<% end %>
+});

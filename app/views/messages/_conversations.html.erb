@@ -1,0 +1,24 @@
+        <div class="col-md-3 col-xs-12 col-lg-3 col-sm-3">
+            <div class="panel panel-primary conversationpanel">
+                <div class="panel-heading" id="accordion">
+                    <%=t('common.conversation.recent')%>
+                </div>
+                <div class="panel-body">
+                <% if !conversation.nil? and !conversation.empty? %>   
+                <ul id="conversationList" class="media-list">
+                    <% conversation.each do |conv| %>
+                        <%= render :partial => 'messages/conversation',:locals => {:conversation => conv } %>                   
+                    <% end %>
+                                  
+                </ul>
+             <% if !conversationisLastResults %>   
+                <%= render :partial => 'shared/loadmore',:locals => {:urlpath => message_path(:page => 1,:loadmore => true,:type => "conversation") } %>  
+            <% end %>   
+            <%else%>
+           <%=t('common.conversation.noconversation')%>  
+                 <%end%>
+                </div>                
+           
+            </div> 
+             
+        </div> 

@@ -1,0 +1,5 @@
+<% if @user.class.name=="Agent" %>
+<%= render :partial => 'agents/profile',:locals => { :user => @user }%>
+<% elsif @user.class.name =="Client" %>
+<%= render :partial => 'clients/profile',:locals => { :user => @user }%>
+<% end %>

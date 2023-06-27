@@ -1,0 +1,39 @@
+<% user=nil %>
+<% if conversation.receiver_id==current_user.id and conversation.receiver_type == current_user_type %>
+    <% user=conversation.sender %>
+<% elsif conversation.sender_id==current_user.id and conversation.sender_type == current_user_type %>
+    <% user=conversation.receiver %>
+<% end %>
+
+<% isread=(!conversation.read_at.nil?) %>
+
+    <%= link_to message_path(:type => "message",:counterpartid => user.url_token,:counterparttype => user.get_user_type,:loadmore=>false,:isread=>isread),:remote=>true,:class => "conversationlink" do %>
+
+        <li class="media">
+
+        <div  class="media-body text-center conversationitem">
+            <div class="media">
+
+    <%= image_tag(user.profile_image.url,:class=>"img-responsive pull-left conversationuserimage") %> 
+    <% if !isread %>
+        <button type="button" class="btn btn-primary btn-xs">new</button>
+    <% end %>
+           
+
+                
+                <div class="media-body">
+  
+                    <h5><%=user.first_name + " " + user.last_name %> </h5>  
+                   <small class=""><%=
+    truncate(conversation.content, :length => 12)
+                   conversation.content %> </small>
+                   <br>
+                    <span class="glyphicon glyphicon-time text-muted"></span><small class="text-muted"><%=conversation.created_at.localtime %> </small>
+                </div>
+            </div>
+        </div>
+    
+
+</li>
+<hr/>
+<% end %>

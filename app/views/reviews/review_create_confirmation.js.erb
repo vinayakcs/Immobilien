@@ -1,0 +1,13 @@
+$(function() {
+
+<% if @status%>
+
+		$('#reviewConfirmation').empty();
+		$('#reviewConfirmation').show();
+		$('#reviewConfirmation').text(<%=t('common.review.reviewconfirmaiton')%>);
+		$('.content_sendreview').remove();
+		$('#addreviewtitle').remove();
+<% else %>
+	//TODO display error message
+<% end %>
+});

@@ -1,0 +1,344 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ *= require font-awesome
+ *= require jquery-ui/datepicker
+ */
+
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$facebookColor : #4060A5;
+$twitterColor : #00ABE3;
+$googlePlusColor : #e64522;
+$bodyBgColor : #CACECD;
+.info-media-image{
+    width:100px;
+}
+.info-media-info{
+    margin-top:2em;
+}
+.info-explore{
+    margin-top:0.2em;
+}
+
+.info_image{
+background: image_url("bg.jpg") no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+height: 400px;
+ margin-top: -5em;
+
+}
+.info_search_section{
+    top:0.4em;
+}
+.info-search-row{
+    padding:2%;
+}
+.info-main-message{
+    color: white;
+    font-size: x-large;
+    font-weight: bolder;
+        margin-top: 5em;
+}
+#info-search-form{
+    margin-top:4em;
+}
+#info_search_submit{
+    width:50%;
+    top: 0.4em;
+}
+
+.navbar-header{
+width:100% !important;    
+}
+.navbar-collapse.in{
+    overflow-y: visible;
+}
+#header-title{
+        font-size: xx-large;
+    text-align: center;
+    color: antiquewhite;    
+}
+
+.header-account > .btn-group > .dropdown-menu{
+    min-width: 6.3em !important;
+}
+
+
+
+.position_below_navbar{
+    padding-top:8em;
+}
+.container { width: auto; }
+
+
+
+body{
+background-color:$bodyBgColor;
+ padding-top: 120px; 
+}
+ul
+{
+    list-style-type: none;
+}
+.big-checkbox{
+    width: 2em;
+    height: 1.3em;
+    }
+/*social follow options*/
+.social {
+
+    margin: 0;
+    margin: 5px;
+    list-style: none outside none;
+    display: inline-block;
+    padding: 3px;
+}
+
+.social i {
+    width: 40px;
+    height: 40px;
+    color: #FFF;
+    background-color: #909AA0;
+    font-size: 22px;
+    text-align:center;
+    padding-top: 12px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -webkit-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+}
+
+.social i:hover {
+    color: #FFF;
+    text-decoration: none;
+    transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -webkit-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+}
+
+.social .fa-facebook:hover {
+    background: $facebookColor;
+}
+
+.social .fa-twitter:hover {
+    background: $twitterColor; 
+}
+
+.social .fa-google-plus:hover {
+    background: $googlePlusColor;
+}
+
+#languagechoice{
+color: antiquewhite;
+    font-size: 1.2em;
+}
+
+/*positioning logo*/
+.header_logo { 
+max-width: 100px;
+max-height: 50px;
+margin-top: -16px;
+}
+
+#nav_bar_header_login{
+    margin-right: 2em;
+    margin-top: -0.6em;
+}
+
+#header_login{
+    padding:1em;
+}
+
+
+
+
+.footer {
+/*TODO seems to overlap on smaller screens FIXME*/
+position:relative;
+text-align: center;
+bottom: 0;
+width: 100%;
+}
+
+#signup{
+    text-align:center;
+}
+
+html, body, .container-table {
+    height: 100%;
+}
+
+
+
+
+.navbar{
+    z-index:5;
+}
+
+
+ul.ui-autocomplete{
+    position:absolute;
+    list-style:none;
+    margin:0;
+    padding:0;
+    border:solid 1px #999;
+    cursor:default;
+    li{
+    background-color:#FFF;
+    border-top:solid 1px #DDD;
+    margin:0;
+    padding:0;
+    }
+}
+
+ .user_wrapper .btn {
+        border-radius: 0px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        margin: 5px;
+    }
+
+    .user_wrapper .description {
+        text-align:center;
+        padding: 25px;
+        background-color: #fff;
+    }
+    .user_wrapper img {
+        width:100%;
+    }
+
+    .btn-social {
+    color: white;
+    opacity: 0.8;
+}
+
+.btn-social:hover {
+    color: white;
+    opacity: 1;
+    text-decoration: none;
+}
+
+.btn-facebook {
+    background-color: #3b5998;
+}
+
+.btn-twitter {
+    background-color: #00aced;
+}
+
+.btn-google {
+    background-color: #c32f10;
+}
+.centered-pills {
+    text-align: center
+}
+.centered-pills ul.nav-pills {
+    display: inline-block
+}
+.centered-pills li {
+    display: inline
+}
+.centered-pills a {
+    float: left
+}
+* html .centered-pills ul.nav-pills, *+html .centered-pills ul.nav-pills {
+    display: inline
+}
+
+.img-circle {
+    max-height:55px;
+}
+
+#reviewTitle{
+    font-size: xx-large;
+    margin-bottom: 1em;
+}
+.reviewHeading{
+        font-size: x-large;
+}
+.star-rating {
+  line-height:32px;
+  font-size:1.25em;
+  cursor: pointer;
+}
+.review-image{
+    margin: auto;
+}
+.review-meta{
+        font-size: larger;
+        margin-top: 2em;
+}
+
+#no_result_content{
+    font-size: x-large;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.conversationuserimage{
+            width: 5em;
+}
+#conversationList{
+        max-height: 25em;
+    overflow-y: auto;
+}
+.conversationlink{
+    text-decoration: none;
+}
+.conversationactive{
+        background-color: #D4CDCD;
+}
+
+.chat{
+    max-height:25em;
+    overflow-y: auto;
+}
+#messageconfirmation{
+    text-align: center;
+    font-size: x-large;
+    display: block;
+}
+#reviewConfirmation{
+font-size: x-large;
+    text-align: center;
+    display: block;
+    font-style: italic;
+}
+#messagecontent{
+    margin-left: 1em;
+    margin-top: 1em;
+    font-size: x-large;
+}
+#addreviewtitle{
+        font-size: large;
+    text-align: center;
+}
+.max-image-width{
+    max-width: 22em;
+}
+
+.img-responsive-center{
+    margin: 0 auto;
+}

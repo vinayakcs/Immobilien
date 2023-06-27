@@ -1,0 +1,5 @@
+        <% if image_url.blank? %>
+        <img class="img-responsive img-responsive-center max-image-width" src="<%= image_path('default_user.png')%>" >
+        <%else%>
+        <img class="img-responsive img-responsive-center max-image-width" src="<%= image_path(image_url) %>" >
+        <%end%> 

@@ -1,0 +1,21 @@
+$(function() {
+	var toggleActiveConversation = function (){
+		$('#conversationList > a > li.media').first().addClass('conversationactive');
+		$(document).on('click','.conversationlink',function(){
+			$('#conversationList > a > li.media').removeClass('conversationactive');
+			$(this).find('li.media').addClass('conversationactive');
+		});
+	},
+	clearModalTextOnClose=function(){
+		$(document).on('hidden.bs.modal','#messageModal',function(){
+			$('#messageconfirmation').hide();
+			$('#message_content').val('');
+		});
+	},
+	init = function(){
+		toggleActiveConversation();
+		clearModalTextOnClose();
+	};
+	init();
+
+});

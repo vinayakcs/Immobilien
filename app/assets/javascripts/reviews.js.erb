@@ -1,0 +1,37 @@
+$(function() {
+var setRatingStar = function(selector) {
+  return selector.each(function() {
+    if (parseInt($(this).siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+      return $(this).removeClass('fa-star-o').addClass('fa-star');
+    } else {
+      return $(this).removeClass('fa-star').addClass('fa-star-o');
+    }
+  });
+},
+clearModalTextOnClose=function(){
+	$(document).on('hidden.bs.modal','#reviewModal',function(){
+		$('#reviewconfirmation').hide();
+		$('#review_purpose').val('');
+		$('#review_content').val('');
+		$('.review_overall > .rating-value').val('5');
+		setRatingStar($('.review-rate-star'));
+		$('#review_tokenfield').val('');
+	});
+},
+reviewScoreHandler=function(){
+$(document).on('click','.review-rate-star',function() {
+  $(this).siblings('input.rating-value').val($(this).data('rating'));
+  return setRatingStar($('.review-rate-star'));
+});	
+},
+init=function(){
+setRatingStar($('.star-rating .fa'));
+reviewScoreHandler();
+clearModalTextOnClose();
+
+
+
+};
+
+init();
+});

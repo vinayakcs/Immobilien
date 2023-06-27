@@ -1,0 +1,41 @@
+
+
+<form role="form">
+	<div class="content_contactus">
+	  <div id="feedback" >
+	    <h2 class="bar" ><b><%=t('common.feedback.title')%></b></h2>
+	    <%= form_for :feedback_message,:url => url_for(:controller => 'system', :action => 'feedback'), remote:true do |f| %>
+	      
+	      <div class="info">
+	      </div>
+	      <div class="special_email_field" style="display:none;">
+		<%= label_tag :email %>
+		<%= text_field_tag :email, "", :autocomplete => "off" %>
+		(do not fill)
+	      </div>
+	      <div class="form-group row">
+		<%= f.label :name, t('common.feedback.name'),:class=>"col-md-3" %>
+		<%= f.text_field :name,:class=>"col-md-8" %>
+	      </div>
+	      <div class="form-group row">
+		<%= f.label :email, t('common.feedback.emailid'),:class=>"col-md-3" %>
+		<%= f.text_field :email,:class=>"col-md-8" %>
+	      </div>
+	      <div class="form-group row">
+		<%= f.label :content, t('common.feedback.message'),:class=>"col-md-3" %>
+		<%= f.text_area :content,:class=>"col-md-8" %>
+	      </div>
+
+<br>
+
+	      <div class="form-group row">
+		<%= f.label :feedback_type, t('common.feedback.feedbacktype'),:class=>"col-md-3" %>
+	       
+		<%=f.select(:feedback_type, options_for_select([[t('common.feedback.complaint'), 'Complaint'], [t('common.feedback.appreciation'), 'Appreciation']]),:class=>"col-md-9") %>
+	     </div>
+	      <div style="text-align:center;"><div class="actions"><%= f.submit "Submit",:class=>"btn btn-default" %></div></div>
+	    <% end %>
+	  </div>
+	  
+	</div>
+</form>

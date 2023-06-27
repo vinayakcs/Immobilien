@@ -1,0 +1,28 @@
+# == Schema Information
+#
+# Table name: messages
+#
+#  id            :integer          not null, primary key
+#  sender_id     :integer
+#  sender_type   :string
+#  receiver_id   :integer
+#  receiver_type :string
+#  read_at       :datetime
+#  content       :text
+#  status        :string
+#  is_deal       :boolean
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  status: MyString
+  is_deal: false
+
+two:
+  content: MyText
+  status: MyString
+  is_deal: false

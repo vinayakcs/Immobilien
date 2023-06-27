@@ -1,0 +1,87 @@
+
+
+<div class="container"> <!--position_below_navbar-->
+<div class="centered-pills">
+<ul class="nav nav-pills ">
+  <li role="presentation" class="active"><a href="<%=profile_path%>"><%=t('common.agentprofile.home')%></a></li>
+  <li role="presentation"><a href="<%=edit_agent_path(user)%>"><%=t('common.agentprofile.editprofile')%></a></li>
+  <li role="presentation"><a href="<%=showmessage_path%>"><%=t('common.agentprofile.messages')%></a></li>
+</ul>
+</div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h2><%=user.title%></h2>
+    </div>
+</div>
+
+<div class="row">
+<div class="col-md-3 col-sm-3">
+    <div class="user_wrapper">
+       <%= render :partial => 'shared/preview_image',:locals => { :image_url=> user.profile_image.url}%> 
+
+        <div class="description">
+            <h4><%=user.first_name%>&nbsp;&nbsp;<%=get_value_to_show(user.last_name)%></h4>
+            <h5><%=t('common.agentprofile.email')%>:<strong>
+                <%=user.email%>
+            </strong></h5>
+            <h5><%=t('common.agentprofile.phone')%>:<strong><%=get_value_to_show(user.phone)%></strong></h5>
+            <h5><%=t('common.agentprofile.address')%>:<strong><%=get_value_to_show(user.address)%></strong></h5>
+
+        </div>
+    </div>
+</div>
+<div class="col-md-9 col-sm-9  user-wrapper">
+    <div class="description">
+        <h3><%=t('common.agentprofile.description')%> :</h3>
+        
+        <p>
+            <%=get_value_to_show(user.description)%>
+        </p>
+        <hr/>
+         <h3> <%=t('common.agentprofile.sociallinks')%>: </h3>
+         
+         <%social_link_bool=false%>
+         <% if !user.fb_link.blank? %>
+            <a href="<%=user.fb_link%>" class="btn btn-social btn-facebook">
+            <i class="fa fa-facebook"></i>&nbsp; <%=t('common.agentprofile.facebook')%> </a>
+           <%social_link_bool=true%>
+          <%end%>  
+         <% if !user.twitter_link.blank? %>   
+        <a href="<%=user.twitter_link%>" class="btn btn-social btn-twitter">
+            <i class="fa fa-twitter"></i>&nbsp; <%=t('common.agentprofile.twitter')%> </a>
+            <%social_link_bool=true%>
+         <%end%>   
+         <%if !user.googleplus_link.blank?%>   
+        <a href="<%=user.googleplus_link%>" class="btn btn-social btn-google">
+            <i class="fa fa-google-plus"></i>&nbsp; <%=t('common.agentprofile.googleplus')%></a>
+            <%social_link_bool=true%>
+         <%end%> 
+         <% if social_link_bool==false%>  
+         <%= get_not_available_message %>
+         <%end%>  
+         <hr/>
+        <h3> <%=t('common.agentprofile.languages')%>: </h3>
+        
+        <%= render :partial => 'shared/render_list_as_badges',:locals => { :list => user.languages,:fields=> %w[name] }%>
+        <hr/>
+       <h3> <%=t('common.agentprofile.propertytypes')%>: </h3>
+        
+        <%= render :partial => 'shared/render_list_as_badges',:locals => { :list => user.properties,:fields=> %w[name] }%>
+        <hr/>
+        <h3> <%=t('common.agentprofile.locations')%>: </h3>
+        
+        <%= render :partial => 'shared/render_list_as_badges',:locals => { :list => user.locations ,:fields=> %w[fullname]}%>  
+        <hr/>            
+    </div>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+   <%= render :partial => 'reviews/show', :locals => {:reviews => @reviews, :user => user, :showaddreview=>false}%>     
+    </div>    
+</div>    
+
+</div>
+
+

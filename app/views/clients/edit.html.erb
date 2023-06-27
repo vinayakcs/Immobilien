@@ -1,0 +1,87 @@
+<div class="container"> <!--position_below_navbar-->
+<div class="centered-pills">
+<ul class="nav nav-pills">
+  <li role="presentation" ><a href="<%=profile_path%>"><%=t('common.clienteditprofile.home')%></a></li>
+  <li role="presentation" class="active"><a href="<%=edit_client_path(@user)%>"><%=t('common.clienteditprofile.editprofile')%></a></li>
+  <li role="presentation"><a href="<%=showmessage_path%>"><%=t('common.clienteditprofile.messages')%></a></li>
+</ul>
+</div>
+<br>
+<div class="col-md-9 col-md-offset-2">
+<%=form_for @user, :html => { :role=>"form"} do |f| %>
+
+	      <div class="form-group row">
+		<%= f.label :first_name_label, t('common.clienteditprofile.firstname'),:for=>"first_name",:class=>"" %>
+		<%= f.text_field :first_name,:class=>"form-control " %>
+	      </div>
+	      <div class="form-group row">
+		<%= f.label :last_name_label, t('common.clienteditprofile.lastname'),:for=>"last_name",:class=>"" %>
+		<%= f.text_field :last_name,:class=>"form-control " %>
+	      </div>
+	      <div class="form-group row">
+		<%= f.label :phone_label, t('common.clienteditprofile.phone'),:for=>"phone",:class=>" " %>
+		<%= f.text_field :phone,:class=>"form-control "%>
+	      </div>
+	      <div class="form-group row">
+		<%= f.label :address_label, t('common.clienteditprofile.address'),:for=>"address",:class=>" " %>
+		<%= f.text_area :address,:rows=>6,:class=>"form-control " %>
+	      </div>
+
+
+	      <div class="form-group row">
+		<%= f.label :profile_image_label, "Profile Image",:for=>"profile_image",:class=>" control-label" %>
+		<%= f.file_field :profile_image,:class=>"form-control " %>
+	      </div>
+	      <div class="form-group row">
+
+
+			<%= f.label :property_label,t('common.clienteditprofile.propertytypes'),:for=>"property",:class=>"control-label" %>
+
+<%= f.collection_check_boxes :property_ids, Property.all, :id, :name,:include_hidden => false do |b| %>
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+  <% end %>			
+
+		  </div>	
+	      <div class="form-group row">
+	      	<%= f.label :language_label,t('common.clienteditprofile.languages'),:for=>"language",:class=>"control-label" %>
+
+<%= f.collection_check_boxes :language_ids, Language.all, :id, :name,:include_hidden => false do |b| %>
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+  <% end %>	
+		  </div>
+		  <% userlocations="" %>
+		  <% @user.locations.each do |loc| %>
+		  	<% userlocations=userlocations+loc.fullname+"," %>
+		  <% end %>
+		  <%userlocations=userlocations.chop%>
+
+
+	      <div class="form-group row">
+	      	<%= f.label :property_location,t('common.clienteditprofile.locations'),:for=>"location",:class=>"control-label" %>
+			<%=text_field_tag :tokenfield,params[:location],:class=>"form-control",:placeholder=>t('common.clienteditprofile.locationplaceholder'),:value=>userlocations%>
+
+
+		  </div>		  
+		  
+
+
+
+<br>
+	      <div style="text-align:center;"><div class="actions"><%= f.submit t('common.clienteditprofile.submit'),:class=>"btn btn-default" %></div></div>
+</div>
+<%end%>
+
+</div>
+
+</div>
+
+
+
+
+

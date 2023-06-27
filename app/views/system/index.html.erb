@@ -1,0 +1,96 @@
+<div class="container">
+<div class="row info_image">
+	<div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 info-main-message">
+		<div class="row">
+		At vero eos et accusamus et iusto odio dignissimos.
+		</div>
+		<div class="row info-explore text-center">
+			<button type="button" class="btn btn-secondary">
+				<%= link_to "Explore", {:controller => :agents, :action => :index,:page=>1 } ,:class => "info-explore-btn" %>
+			</button>
+		
+		</div>
+	</div>
+	<div id="info-search-form" class="col-md-6 col-sm-6 col-lg-6 col-xs-6" >
+		<%= form_tag url_for(:controller => 'agents', :action => 'index'), :class=> "container vertical-center", :id=> 'search_agent' do %>
+			<div class="row info-search-row">
+					<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
+							<div class="form-group locations-search">
+							<%=text_field_tag :location,params[:location],:class=>"input-lg location locations-search-txt form-control",:placeholder=>t('common.search.locationpincode')%>
+								<div class="results" ></div>
+							</div>
+					</div>		
+					<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
+							<div class="form-group">
+								<%=text_field_tag :name,params[:name],:class=>"input-lg form-control" ,:placeholder=>t('common.search.name') %>
+							</div>	
+					</div>	
+			</div>
+			<div class="row info-search-row">			
+					<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
+							<div class="form-group">
+							<%=select(:property, :name, Property.all.collect {|p| [ p.name, p.id ] },{:include_blank => t('common.search.propertytype')},{ :class=>"input-lg form-control btn btn-default dropdown-toggle col-sm-5"})%>
+							</div>
+					</div>		
+					<div class="col-md-6 col-sm-6 col-xs-12 col-lg-6">
+
+							<div class="form-group">
+							<%=select(:language, :name, Language.all.collect {|p| [ p.name, p.id ] },{:include_blank => t('common.search.language')},{:class => "input-lg form-control btn btn-default dropdown-toggle col-sm-5"})%>
+							</div>
+					</div>	
+			</div>
+			<div class="row info-search-row">
+					<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 text-center info_search_section">
+						<div class="form-group">
+						<%= submit_tag t('common.search.search'),:class => "form-control btn btn-default",:id => 'info_search_submit'  %>
+						</div>
+					</div>	
+			</div>
+		<% end %>
+	</div>
+</div>
+<div class="row info-media-info">
+<div class="col-md-4 col-xs-12 col-lg-4 col-sm-4">
+	<div class="media">
+	  <div class="media-body">
+	    <h4 class="media-heading">info heading1</h4>
+	    Cras sit amet nibh libero, in gravida nulla.<br>
+	    Nulla vel metus scelerisque ante sollicitudin commodo.<br>
+	    Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.<br>
+	  </div>
+	  <a class="media-right" href="#">
+	    <img class="media-object info-media-image" src="<%=image_url('media1.png')%>"
+	         alt="Generic placeholder image">
+	  </a>
+	</div>
+</div>
+<div class="col-md-4 col-xs-12 col-lg-4 col-sm-4">
+	<div class="media">
+	  <div class="media-body">
+	    <h4 class="media-heading">info heading2</h4>
+	    Cras sit amet nibh libero, in gravida nulla.<br>
+	    Nulla vel metus scelerisque ante sollicitudin commodo.<br>
+	    Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.<br>
+	  </div>
+	  <a class="media-right" href="#">
+	    <img class="media-object info-media-image" src="<%=image_url('media2.jpg')%>"
+	         alt="Generic placeholder image">
+	  </a>
+	</div>
+</div>
+<div class="col-md-4 col-xs-12 col-lg-4 col-sm-4">
+	<div class="media">
+	  <div class="media-body">
+	    <h4 class="media-heading">info heading3</h4>
+	    Cras sit amet nibh libero, in gravida nulla.<br>
+	    Nulla vel metus scelerisque ante sollicitudin commodo.<br>
+	    Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.<br>
+	  </div>
+	  <a class="media-right" href="#">
+	    <img class="media-object info-media-image" src="<%=image_url('media3.png')%>"
+	         alt="Generic placeholder image">
+	  </a>
+	</div>
+</div>
+</div>
+</div>

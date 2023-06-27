@@ -1,0 +1,25 @@
+$(function(){
+
+$(".location").each(function(){
+$(this).autocomplete({
+      source: '/locationsuggestion',
+      delay: 100,
+      appendTo:"#location_suggestions"
+    });
+});
+$('#tokenfield').tokenfield({
+  autocomplete: {
+    source: '/locationsuggestion',
+    delay: 100
+  },
+  showAutocompleteOnFocus: true
+});
+$('#tokenfield').on('tokenfield:createtoken', function (event) {
+    var existingTokens = $(this).tokenfield('getTokens');
+    $.each(existingTokens, function(index, token) {
+        if (token.value === event.attrs.value)
+            event.preventDefault();
+    });
+});
+
+});

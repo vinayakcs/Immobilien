@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= yield(:title) %></title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+<%= render :partial => 'shared/meta', :locals => {:isHome => true, :page=> nil} %>  
+</head>
+<body>
+
+<%= render :partial => 'shared/header' unless @disable_nav_header%>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    	<% if value.kind_of?(Array) %>
+    		<ol>
+    			<% value.each do |item| %>
+    				<%= content_tag :li, item %>
+    			<% end %>
+    		</ol>
+    	<%else%>
+    		<%=value%>		
+    	<% end %>		
+    	
+    </div>
+  <% end %>
+<%= yield %>
+
+<%= render :partial => 'shared/footer' unless @disable_nav_footer%>
+
+</body>
+</html>

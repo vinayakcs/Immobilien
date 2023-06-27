@@ -1,0 +1,72 @@
+<div id="reviewTitle" class="text-center">
+	<div class="container">
+
+	<div class="col-md-12 col-sm-12 col-lg-12" >
+		<% if user.class.name=="Agent" %>
+		  <%=t('common.review.reviews')%>
+		  <% if !user.reviews_count.nil? and user.reviews_count > 0 %> 
+		  ( <%=t('common.review.reviewscore')%> <%=user.review_score/user.reviews_count%> from <%=user.reviews_count%> <%=t('common.review.reviews')%>)
+		  <% else %>
+		  (<%=t('common.review.bethefirsttoreview')%>)
+		  <% end %> 
+		<%else%>
+		<% if !user.reviews_count.nil? and user.reviews_count > 0 %> 
+		Reviews
+		<% end %>
+			
+		<% end %>  
+	</div>
+
+	</div>
+</div>
+<br>
+
+<% if  user.class.name=="Agent" and (!check_auth_user? or current_user_type=="Client") %>
+<div id="reviewConfirmation"> </div>
+<div id="addreviewtitle"><%=t('common.review.addreview')%></div>
+	<div class="content_sendreview container">
+	  <div id="review" class="col-md-9 col-md-offset-2" >
+
+	    <%= form_for :review,:html => { :role=>"form"},:url => url_for(:controller => 'reviews', :action => 'create'), remote:true do |f| %>
+        <%= hidden_field_tag 'toreview', user.url_token  %>	      
+	      <div class="form-group row">
+		<%= f.label :purpose, t('common.review.purpose'),:class=>"control-label"  %>
+		<%= f.text_area :purpose,:placeholder=>t('common.review.reviewpurposesubmitplaceholder'),:class=>"form-control" %>
+	      </div>
+	      <div class="form-group row">
+		<%= f.label :content, t('common.review.review'),:class=>"control-label"  %>
+		<%= f.text_area :content,:placeholder=>t('common.review.reviewsubmitplaceholder'),:class=>"form-control" %>
+	      </div>
+	      <div class="form-group row">
+	      	<%= f.label :overall, t('common.review.score'),:class=>"" %>
+				<div class="star-rating review_overall"> 
+                  <span class="fa fa-star-o review-rate-star" data-rating="1"></span>
+                  <span class="fa fa-star-o review-rate-star" data-rating="2"></span>
+                  <span class="fa fa-star-o review-rate-star" data-rating="3"></span>
+                  <span class="fa fa-star-o review-rate-star" data-rating="4"></span>
+                  <span class="fa fa-star-o review-rate-star" data-rating="5"></span>
+                  <input type="hidden" name="rating" class="rating-value" value="5">
+                </div>
+	      </div>
+	      <div class="form-group row">
+
+	      	<%= f.label :property_location,t('common.review.location'),:for=>"location",:class=>"control-label" %>
+
+			<%=text_field_tag :tokenfield,params[:location],:class=>"form-control",:placeholder=>"Location(pincode)",:value=>"",:data=>{:limit=>"1"}%>
+
+		  </div>	      
+	      <div style="text-align:center;">
+	      	<div class="actions">
+	      		<% if check_auth_user? %>
+		      		<%= f.submit t('common.review.submitreview'),:class=>"btn btn-primary" %>
+		      	<% else %>
+					<button  type="button" class="btn btn-primary send_review"  data-toggle="modal" data-target="#loginModal"><%=t('common.review.submitreview')%></button>		      	
+		      	<% end %>	
+	      	</div>
+	      </div>
+	      <br>
+	    <% end %>
+	  </div>
+	  
+	</div>
+	<% end %>

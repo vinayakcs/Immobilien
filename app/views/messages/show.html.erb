@@ -1,0 +1,19 @@
+<div class="container">
+<div class="centered-pills">
+<ul class="nav nav-pills">
+  <li role="presentation" ><a href="<%=profile_path%>"><%=t('common.message.home')%></a></li>
+  <% userediturl = current_user_type=="Agent" ? edit_agent_path(@user) : edit_client_path(@user) %>
+  <li role="presentation" ><a href="<%=userediturl%>"><%=t('common.message.editprofile')%></a></li>
+  <li role="presentation" class="active"><a href="<%=showmessage_path%>"><%=t('common.messages')%></a></li>
+</ul>
+</div>  
+<% if mobile_device? %>
+<%= render :partial => 'messages/mobile',:locals=>{:conversation=>@conversations,:conversationisLastResults=>@conversationisLastResults,:message => @messages,:messagesisLastResults=>@messagesisLastResults,:counterpartid=>@counterpartid,:counterparttype=>@counterparttype } %>
+<% else %>
+    <div class="row ">
+        <%= render :partial => 'messages/conversations',:locals => {:conversation=>@conversations,:conversationisLastResults=>@conversationisLastResults } %>    
+        <%= render :partial => 'messages/messages',:locals => {:message => @messages,:messagesisLastResults=>@messagesisLastResults,:counterpartid=>@counterpartid,:counterparttype=>@counterparttype } %> 
+    </div>
+<% end %>
+
+</div>

@@ -1,0 +1,15 @@
+
+
+
+<%= render :partial => 'reviews/review_submit',:locals => {:user => user} %>
+
+
+<div id="reviewContainer" class="container">
+
+  <%@reviews.each do |review|%>
+  <%= render :partial => 'reviews/review',:locals => {:usertype => user.class.name, :review => review } %>
+  <% end %>  
+</div>
+<%if !@reviews.nil? and !@reviews.empty? and @reviews.length>=GlobalConstants::REVIEW_PER_PAGE%>
+<%= render :partial => 'shared/loadmore',:locals => {:urlpath => reviews_path(:page=>1),:userid=>user.url_token,:usertype=>user.class.name } %>
+<% end %>

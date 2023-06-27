@@ -1,0 +1,24 @@
+$(function() {
+
+var utils=immobilien_utils(),
+	loadMoreOnClick=function(){
+	$('.load_more_btn').on('click',function(){
+		incrementPageVal(this);
+	});	
+	},
+	incrementPageVal=function(elem){
+		href=$(elem).attr('href');
+		if(href){
+			$(elem).attr('href',utils.setLoadMoreParam(href));
+		}
+	},
+	init=function(){
+	$('.load_more_btn').each(function(){
+		incrementPageVal(this);
+	});
+	//loadMoreOnClick();
+	};
+
+init();
+
+});

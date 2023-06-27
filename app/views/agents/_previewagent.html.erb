@@ -1,0 +1,66 @@
+
+
+<div class="agent_preview row">
+
+ <div class="row-same-height row-full-height">
+<div class="span">
+<div class="agent_preview_image  col-xs-12 col-sm-12 col-lg-3 col-md-3">
+<%= link_to image_tag(agent.profile_image.url,:class=>"img-responsive img-responsive-center max-image-width"),:id=>agent, :controller => :agents, :action => :show %>
+</div><!--agent_preview_image-->
+</div>
+<div class="agent_preview_body   col-xs-12 col-sm-9 col-lg-9 col-md-9">
+
+
+<div class="agent_preview_title text-center ">
+<%#find helper in layout helper%>
+<h3><strong><%=link_to get_value_to_show(truncate_preview_title(agent.title)),:id=>agent, :controller => :agents, :action => :show%></strong></h3>
+</div><!--agent_preview_title-->
+
+	<div class="agent_preview_name text-center">
+		<h4><%= [agent.first_name , agent.last_name].join(' ').squeeze(' ') %></h4>
+	</div>
+
+<br>
+
+<div class="agent_preview_description">
+<%#find helper in layout helper%>
+<%=get_value_to_show(truncate_preview_description(agent.description))%>
+</div><!--agent_preview_description-->
+<br>
+<div class="agent_preview_footer">
+	<ul class="list-inline">
+       <li>
+        <h5> <%=t('common.agentpreview.languages')%>: </h5>
+        </li>
+        <li>
+        <%= render :partial => 'shared/render_list_as_badges',:locals => { :list => agent.languages, :fields=>["name"] }%>
+    </li>
+</ul>
+	<ul class="list-inline">
+       <li>
+       <h5> <%=t('common..agentpreview.propertytypes')%>: </h5>
+   </li>
+   <li>
+        <%= render :partial => 'shared/render_list_as_badges',:locals => { :list => agent.properties, :fields=>["name"] }%>
+    </li>
+</ul>
+	<ul class="list-inline">
+       <li>
+        <h5> <%=t('common..agentpreview.locations')%>: </h5>
+    </li>
+    <li>
+        <%= render :partial => 'shared/render_list_as_badges',:locals => { :list => agent.locations, :fields=>["fullname"] }%>  
+        </li>
+        </ul>           
+   
+</div><!--agent_preview_footer-->
+</div><!--agent_preview_body-->
+
+
+</div><!--row-same-height-->
+
+
+</div><!--agent_preview-->
+
+<div style="clear:both"></div><br>
+<strong> <hr/></strong>

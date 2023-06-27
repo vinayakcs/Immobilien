@@ -1,0 +1,40 @@
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h2><%=@user.first_name+" "+@user.last_name%></h2>
+    </div>
+</div>
+<div class="row">
+<div class="col-md-3 col-sm-3">
+    <div class="user_wrapper">
+      <%= render :partial => 'shared/preview_image',:locals => { :image_url=> @user.profile_image.url}%> 
+        <div class="description">
+            <h4><%=get_value_to_show(@user.first_name)%>&nbsp;&nbsp;<%=get_value_to_show(@user.last_name)%></h4>
+        </div>
+    </div>
+</div>
+<div class="col-md-9 col-sm-9  user-wrapper">
+    <div class="description">
+
+        <h3> <%=t('common.languages')%>: </h3>
+
+        <%= render :partial => 'shared/render_list_as_badges',:locals => { :list => @user.languages ,:fields=> %w[name]}%>
+
+       <h3> <%=t('common.propertytypes')%>: </h3>
+
+        <%= render :partial => 'shared/render_list_as_badges',:locals => { :list => @user.properties,:fields=> %w[name] }%>
+        <h3> <%=t('common.locations')%>: </h3>
+
+        <%= render :partial => 'shared/render_list_as_badges',:locals => { :list => @user.locations ,:fields=> %w[fullname]}%>         
+
+            
+    </div>
+</div>
+
+</div>
+<hr/>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+   <%= render :partial => 'reviews/show',:locals => { :reviews => @reviews, :user=> @user, :showaddreview=>!check_auth_user? }%>  
+    </div>    
+</div>

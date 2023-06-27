@@ -1,0 +1,34 @@
+<script type='text/javascript'>
+$(function() {
+		var chooseMessageSection=function(){
+			$(document).on('click','.mobile_message_section',function(){
+				var type=$(this).attr('type');
+				if(type=="message"){
+					$('.mobile_conversation').hide();
+					$('.mobile_message').show();
+					$('#mobile_conversation_message_section').removeClass('active');
+					$('#mobile_message_message_section').addClass('active');
+				}else if(type="conversation"){
+					$('.mobile_message').hide();
+					$('.mobile_conversation').show();
+					$('#mobile_conversation_message_section').addClass('active');
+					$('#mobile_message_message_section').removeClass('active');
+				}
+			});
+		},
+		handleConversationclick=function(){
+			$(document).on('click','.conversationlink',function(){
+					$('.mobile_conversation').hide();
+					$('.mobile_message').show();	
+					$('#mobile_conversation_message_section').removeClass('active');
+					$('#mobile_message_message_section').addClass('active');								
+			});
+		},
+		init=function(){
+			chooseMessageSection();	
+			handleConversationclick();
+			$('.mobile_message').hide();
+		};
+		init();
+	});
+</script>		

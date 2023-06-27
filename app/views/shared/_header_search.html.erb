@@ -1,0 +1,39 @@
+<div id="header-search-form" class="container">
+<%= form_tag url_for(:controller => 'agents', :action => 'index'), :class=> " vertical-center", :id=> 'search_agent' do %>
+<div class="row">
+	<div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">
+			<div class="form-group locations-search">
+			<%=text_field_tag :location,params[:location],:class=>"location locations-search-txt form-control",:placeholder=>t('common.search.locationpincode')%>
+				<div class="results" ></div>
+			</div>
+	</div>		
+	<div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">
+			<div class="form-group">
+				<%=text_field_tag :name,params[:name],:class=>"form-control" ,:placeholder=>t('common.search.name') %>
+			</div>	
+	</div>		
+	<div class="col-md-2 col-sm-2 col-xs-12 col-lg-2">
+			<div class="form-group">
+			<%=select(:property, :name, Property.all.collect {|p| [ p.name, p.id ] },{:include_blank => t('common.search.propertytype')},{ :class=>"form-control btn btn-default dropdown-toggle col-sm-5"})%>
+			</div>
+	</div>		
+	<div class="col-md-2 col-sm-2 col-xs-12 col-lg-2">
+
+			<div class="form-group">
+			<%=select(:language, :name, Language.all.collect {|p| [ p.name, p.id ] },{:include_blank => t('common.search.language')},{:class => "form-control btn btn-default dropdown-toggle col-sm-5"})%>
+			</div>
+	</div>		
+	<div class="col-md-2 col-sm-2 col-xs-12 col-lg-2">
+		<div class="form-group">
+		<%= submit_tag t('common.search.search'),:class => "form-control btn btn-default",:id => 'header_search_submit'  %>
+		</div>
+	</div>	
+
+</div>
+	
+<% end %>
+</div>
+			
+	
+
+	 <!-- location is autocomplete treat carefully -->

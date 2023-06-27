@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: language_assocs
+#
+#  id          :integer          not null, primary key
+#  language_id :integer
+#  agent_id    :integer
+#  client_id   :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  language_id: 1
+  agent_id: 1
+  client_id: 1
+
+two:
+  language_id: 1
+  agent_id: 1
+  client_id: 1

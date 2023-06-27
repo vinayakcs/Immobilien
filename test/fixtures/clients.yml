@@ -1,0 +1,49 @@
+# == Schema Information
+#
+# Table name: clients
+#
+#  id                         :integer          not null, primary key
+#  url_token                  :string
+#  remember_token             :string
+#  address                    :string
+#  first_name                 :string
+#  last_name                  :string
+#  gender                     :string
+#  email                      :string
+#  phone                      :string
+#  isblocked                  :boolean          default(FALSE)
+#  profile_image_file_name    :string
+#  profile_image_content_type :string
+#  profile_image_file_size    :integer
+#  profile_image_updated_at   :datetime
+#  location_name              :string
+#  reviews_count              :integer
+#  deals_accepted             :integer
+#  deals_rejected             :integer
+#  deals_pending              :integer
+#  unread_message_count       :integer
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  location_name: MyString
+  property_type: MyString
+  reviews_number: 1
+  deals_accepted: 1
+  deals_rejected: 1
+  deals_pending: 1
+  unread_message_count: 1
+
+two:
+  name: MyString
+  location_name: MyString
+  property_type: MyString
+  reviews_number: 1
+  deals_accepted: 1
+  deals_rejected: 1
+  deals_pending: 1
+  unread_message_count: 1

@@ -1,0 +1,41 @@
+        <div class="col-md-9 col-xs-12 col-lg-9 col-sm-9">
+            <div class="panel panel-primary messagespanel">
+                <div class="panel-heading" id="accordion">
+                    <span class="glyphicon glyphicon-comment"></span> <%=t('common.message.conversation')%>
+                </div>
+            <div class="panel">
+                <% if !message.nil? and !message.empty? %>
+                    <div class="panel-body">
+                        <ul class="chat">
+                            <% message.each do |m| %>
+                                <%= render :partial => 'messages/message',:locals => {:message => m } %>   
+                            <% end %>     
+
+                        </ul>
+
+                        <% if !messagesisLastResults %>
+                         <%= render :partial => 'shared/loadmore',:locals => {:urlpath => message_path(:page=>1,:loadmore=>true,:type=>"message",:counterpartid=>counterpartid,:counterparttype=>counterparttype) } %>
+                        <% end %>
+
+                    </div>
+                    <div class="panel-footer">
+
+                        <%= form_for :message,:url => url_for(:controller => 'messages', :action => 'create'), :html => {:class => "input-group"}, remote:true do |f| %>
+                        <%= hidden_field_tag 'counterpartid', counterpartid  %>
+                        <%= hidden_field_tag 'counterparttype', counterparttype  %>
+                        <%= hidden_field_tag 'source', 'profile' %>             
+                        <%= f.text_field :content,:id=>"btn-input",:class=>"form-control input-sm",:placeholder => t('common.message.typeyourmessagehere')%> 
+                        <span class="input-group-btn">
+                        <%= f.submit t('common.message.submit'),:class=>"btn btn-warning btn-sm",:id=>"btn-chat" %> 
+                        </span>                      
+                        <% end %>   
+                        
+                        
+                    </div>
+                <%else%>
+                    <%=t('common.message.nomessages')%>
+                <%end%> 
+            </div>
+            </div>
+
+        </div>

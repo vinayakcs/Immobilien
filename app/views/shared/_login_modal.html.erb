@@ -1,0 +1,27 @@
+		<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title text-center" id="loginModalLabel"><%=t('common.loginmodal.login')%></h4>
+		      </div>
+		      <div class="modal-body">
+		      	<div class="container">
+		      		<div class="row">
+		      			<div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 text-center">
+						<a href="/auth/facebook" class="btn btn-lg btn-primary login_button"><i class="fa fa-facebook fa-4x"></i>login</a>
+						</div>
+						<div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 text-center">
+						<a href="/auth/google_oauth2" class="btn btn-lg btn-danger login_button"><i class="fa fa-google-plus fa-4x"></i>login</a>
+						</div>
+					</div>
+				</div>
+		      </div>
+		      <div class="modal-footer">
+			<div class="pull-left">	
+			<%=t('common.loginmodal.loginterms')%> <%=link_to t('common.loginmodal.privacy'),privacy_path %> & <%=link_to t('common.loginmodal.terms'),terms_path %> 
+			</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>

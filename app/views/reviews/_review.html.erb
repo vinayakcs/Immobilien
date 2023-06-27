@@ -1,0 +1,49 @@
+  <% user=nil %>
+  <% if usertype=="Client" %>
+    <% user = review.to_user %>
+  <% elsif usertype=="Agent" %>
+    <% user = review.from_user %>
+  <% end %> 
+
+	<div class="row">
+
+		<div class="col-md-4">
+            <div class="col-md-6">
+              <%= link_to image_tag(user.profile_image.url,:class=>"img-responsive-center img-responsive"),:id=>user.url_token, :controller => (user.class.name=="Agent") ? :agents : :clients, :action => :show %>
+ 
+             </div> 
+              <div class="col-md-6">
+              <div class=" review-meta text-center pagination-centered">
+                  <ul class="list-inline">  
+                    <li><%= user.first_name %> &nbsp;&nbsp;<%=get_value_to_show(user.last_name)%></li>
+                    <li><%= review.created_at.localtime %></li>
+                  </ul>
+              </div>
+            </div>            
+    </div>
+  		<div class="col-md-8">
+          
+      	  <div class="col-md-12 text-center">
+            <ul class="list-inline">
+        		  <li class="reviewHeading ">
+                <%= review.purpose %> &nbsp;&nbsp; <%= review.location.fullname%>
+              </li>
+         		  <li class="reviewScore">
+                <div class="star-rating"> 
+                  <span class="fa fa-star-o" data-rating="1"></span>
+                  <span class="fa fa-star-o" data-rating="2"></span>
+                  <span class="fa fa-star-o" data-rating="3"></span>
+                  <span class="fa fa-star-o" data-rating="4"></span>
+                  <span class="fa fa-star-o" data-rating="5"></span>
+                  <input type="hidden" name="rating" class="rating-value" value="<%=review.overall%>">
+                </div>
+
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-12">
+             <%=review.content %>
+          </div>
+      	</div>  
+  	</div>
+    <hr/>

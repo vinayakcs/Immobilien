@@ -1,0 +1,11 @@
+var utils=immobilien_utils();
+<% for agent in @agents %>
+$('#agent_preview_container').append("<%=  escape_javascript render :partial => 'agents/previewagent', :locals => {:agent => agent} %>");
+<%end%>
+<% if @isLastResults==true %>
+$('#agent_preview_container').after("<%= escape_javascript render :partial => 'shared/noresult' %>");
+$('#load_more_link').remove();
+<%else%> 
+var oldUrl=$('#load_more_link').attr('href');
+$('#load_more_link').attr('href',utils.setLoadMoreParam(oldUrl));
+<%end%>

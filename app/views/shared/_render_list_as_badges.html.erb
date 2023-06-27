@@ -1,0 +1,9 @@
+<% if list.size>0%>
+<%=content_tag(:ul, :class => 'list-inline') do%>
+ <% list.collect do |data|%>
+    <%=content_tag(:li, content_tag(:span,return_csv_data_from_proprty_of_object(data,fields),:class=>"label label-primary"))%>
+  <%end.join.html_safe%>
+<%end%>
+<%else%>
+    <%= get_not_available_message %>
+<%end%>

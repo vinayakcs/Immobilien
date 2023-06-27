@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: location_assocs
+#
+#  id          :integer          not null, primary key
+#  location_id :integer
+#  agent_id    :integer
+#  client_id   :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location_id: 1
+  agent_id: 1
+  client_id: 1
+
+two:
+  location_id: 1
+  agent_id: 1
+  client_id: 1

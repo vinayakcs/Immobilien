@@ -1,0 +1,80 @@
+<% if check_auth_user? %>
+	<%=render :partial => '/shared/message_modal',:locals => {:counterpartid=>@agent.url_token,:counterparttype=>"Agent"}%>
+    <% if current_user_type=="Client" %>
+
+    <% end %> 
+<%end%>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h2><%=@agent.title%></h2>
+    </div>
+</div>
+<div class="row">
+<div class="col-md-3 col-sm-3">
+    <div class="user_wrapper">
+        <%= render :partial => 'shared/preview_image',:locals => { :image_url=> @agent.profile_image.url}%> 
+
+        <div class="description">
+            <h4><%=get_value_to_show(@agent.first_name)%>&nbsp;&nbsp;<%=get_value_to_show(@agent.last_name)%></h4>
+            <h5><%=t('common.agentshow.email')%>:<strong>
+                <%=@agent.email%>
+            </strong></h5>
+            <h5><%=t('common.agentshow.phone')%>:<strong><%=get_value_to_show(@agent.phone)%></strong></h5>
+            <h5><%=t('common.agentshow.address')%>:<strong><%=get_value_to_show(@agent.address)%></strong></h5>
+            <% if !check_auth_user? or current_user_type=='Client' %>
+            <h5><button  type="button" class="btn btn-primary send_message"  data-toggle="modal" data-target="<%= check_auth_user? ? '#messageModal' : '#loginModal' %>"><%=t('common.agentshow.sendmessage')%></button></h5>
+            <% end %>
+ 
+
+        </div>
+    </div>
+</div>
+<div class="col-md-9 col-sm-9  user-wrapper">
+    <div class="description">
+        <h3><%=t('common.agentshow.description')%> :</h3>
+        <hr/>
+        <p>
+            <%=get_value_to_show(@agent.description)%>
+        </p>
+              
+        <h3> <%=t('common.agentshow.languages')%>: </h3>
+
+        <%= render :partial => 'shared/render_list_as_badges',:locals => { :list => @agent.languages ,:fields=> %w[name]}%>
+
+       <h3> <%=t('common.agentshow.propertytypes')%>: </h3>
+
+        <%= render :partial => 'shared/render_list_as_badges',:locals => { :list => @agent.properties,:fields=> %w[name] }%>
+        <h3> <%=t('common.agentshow.locations')%>: </h3>
+
+        <%= render :partial => 'shared/render_list_as_badges',:locals => { :list => @agent.locations ,:fields=> %w[fullname]}%>         
+         <h3> <%=t('common.agentshow.sociallinks')%>: </h3>
+         <hr/>
+         <%social_link_bool=false%>
+         <% if !@agent.fb_link.blank? %>
+            <a href="<%=@agent.fb_link%>" class="btn btn-social btn-facebook">
+            <i class="fa fa-facebook"></i>&nbsp; <%=t('common.agentshow.facebook')%> </a>
+           <%social_link_bool=true%>
+          <%end%>  
+         <% if !@agent.twitter_link.blank? %>   
+        <a href="<%=@agent.twitter_link%>" class="btn btn-social btn-twitter">
+            <i class="fa fa-twitter"></i>&nbsp; <%=t('common.agentshow.twitter')%> </a>
+            <%social_link_bool=true%>
+         <%end%>   
+         <%if !@agent.googleplus_link.blank?%>   
+        <a href="<%=@agent.googleplus_link%>" class="btn btn-social btn-google">
+            <i class="fa fa-google-plus"></i>&nbsp; <%=t('common.agentshow.googleplus')%></a>
+            <%social_link_bool=true%>
+         <%end%> 
+         <% if social_link_bool==false%>  
+         <%= get_not_available_message %>
+         <%end%>  
+            
+    </div>
+</div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+   <%= render :partial => 'reviews/show',:locals => { :reviews => @reviews, :user=> @agent } %>  
+    </div>    
+</div>

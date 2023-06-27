@@ -1,0 +1,42 @@
+		<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+			<button type="button" class="close close-message" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title text-center" id="messageModalLabel"><%=t('common.messagemodal.sendmessage')%></h4>
+		      </div>
+		      <div class="modal-body">
+		      <div id="messageconfirmation">
+		      	
+		      </div>	
+		      <br>
+	<div class="content_sendmessage">
+	  <div id="message" class="text-center">
+
+                        <%= form_for :message,:url => url_for(:controller => 'messages', :action => 'create'),  remote:true do |f| %>
+                        <%= hidden_field_tag 'counterpartid', counterpartid  %>
+                        <%= hidden_field_tag 'counterparttype', counterparttype  %>
+                        <%= hidden_field_tag 'source','modal' %>
+                        <div class="form-group row">
+                        	<%= f.label :content, t('common.messagemodal.message'),:class=>"col-md-3" %>
+                        <%= f.text_area :content,:class=>"col-md-8",:placeholder => t('common.messagemodal.messagetextplaceholder')%> 
+                    	</div>
+                        <%= f.submit t('common.messagemodal.send'),:class=>"btn btn-default" %> 
+
+                        <% end %>  
+	
+
+	  </div>
+	  
+	</div>
+
+
+		      </div>
+		      <div class="modal-footer">
+			<div class="pull-left">	
+			<%=t('common.messagemodal.messageterm')%> <%=link_to t('common.messagemodal.privacypolicy'),privacy_path %> & <%=link_to t('common.messagemodal.terms'),terms_path %> 
+			</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>

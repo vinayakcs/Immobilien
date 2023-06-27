@@ -1,0 +1,17 @@
+<%= render :partial => 'messages/mobile_messagejs' %>
+<br><br>
+<div id="mobile_message_view" class="span12 centered-pills">
+<ul class="nav nav-pills ">
+  <li id="mobile_conversation_message_section" role="presentation" class="active mobile_message_section" type="conversation"><a href="">Recent Conversation</a>
+  </li>
+  <li id="mobile_message_message_section" role="presentation" class="mobile_message_section" type="message"><a href="">Conversation</a>
+  </li>
+</ul>
+</div>
+<br><br>
+<div class="row mobile_conversation">
+<%= render :partial => 'messages/conversations',:locals => {:conversation=>conversation,:conversationisLastResults=>conversationisLastResults } %>  	
+</div> 
+<div class="row mobile_message">
+<%= render :partial => 'messages/messages',:locals => {:message => message,:messagesisLastResults=>messagesisLastResults,:counterpartid=>counterpartid,:counterparttype=>counterparttype } %> 	
+</div>	
